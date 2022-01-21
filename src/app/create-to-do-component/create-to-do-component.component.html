@@ -1,0 +1,51 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add New ToDo</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="AddForm" (ngSubmit)="onSubmit()">
+        <div class='row'>
+          <div class='col-sm-12 col-md-8'>
+            <div class="form-group">
+              <label>Task Name</label>
+              <input type="text" formControlName="taskName" class="form-control" placeholder="Task Name" (change)="onSubmit()"> 
+              <div *ngIf="submitted && f.taskName.errors" class="invalid-feedback">
+                <div *ngIf="f.taskName.errors.required">Task Name is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <div class="form-group">
+              <label>Repeating Task</label>
+              <select formControlName="repeatingTask" class="form-control" (change)="onSubmit()"> 
+                <option value='Yes'>Yes</option>
+                <option value='No'>No</option>
+              </select>
+              <div *ngIf="submitted && f.repeatingTask.errors" class="invalid-feedback">
+                <div *ngIf="f.repeatingTask.errors.required">Select Repeating Task</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12">
+            <div class="form-group">
+              <label>Task Description</label>
+              <textarea formControlName="taskDescription" class="form-control" rows="5" placeholder="Description" (change)="onSubmit()"></textarea> 
+              <div *ngIf="submitted && f.taskDescription.errors" class="invalid-feedback">
+                <div *ngIf="f.taskDescription.errors.required">Description is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+            <!-- <button type="submit" class="btn btn-primary float-right">Save</button> -->
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </ng-template>
+  
+  <button class="btn  btn-primary float-sm-right" (click)="open(content)">Launch demo modal</button>

@@ -1,0 +1,20 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task name</th>
+            <th scope="col">Task Description</th>
+            <th scope="col">Repeating Task</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let td of task; index as i">
+            <td *ngIf="td.status == 1">
+               <input type="checkbox" class="form-control-check" (click)="changeStatus(i)">
+             </td>
+            <td *ngIf="td.status == 1">{{ td.taskName }}</td>
+            <td *ngIf="td.status == 1">{{ td.taskDescription }}</td>
+            <td *ngIf="td.status == 1">{{ td.repeatingTask }}</td>
+        </tr>
+    </tbody>
+</table>

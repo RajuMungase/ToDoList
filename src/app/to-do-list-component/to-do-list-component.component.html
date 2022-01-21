@@ -1,0 +1,57 @@
+<div class="container mt-3">
+    <section class="content-header">
+       <div class="container">
+          <div class="row mb-2">
+             <div class="col-sm-6">
+                <h1>ToDo List</h1>
+             </div>
+             <div class="col-sm-6">
+                <app-create-to-do-component></app-create-to-do-component>
+             </div>
+          </div>
+       </div>
+    </section>
+    
+    <section class="content">
+       <div class="card">
+          <div class="card-body">
+
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-pills nav-fill">
+                <li [ngbNavItem]="1">
+                  <a ngbNavLink>ToDo List</a>
+                  <ng-template ngbNavContent>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Task name</th>
+                                <th scope="col">Task Description</th>
+                                <th scope="col">Repeating Task</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let td of task; index as i">
+                                <td *ngIf="td.status == 0">
+                                   <input type="checkbox" class="form-control-check" (click)="changeStatus(i)">
+                                 </td>
+                                <td *ngIf="td.status == 0">{{ td.taskName }}</td>
+                                <td *ngIf="td.status == 0">{{ td.taskDescription }}</td>
+                                <td *ngIf="td.status == 0">{{ td.repeatingTask }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                  <a ngbNavLink>Done ToDo List</a>
+                  <ng-template ngbNavContent>
+                    <app-done-list-component></app-done-list-component>
+                  </ng-template>
+                </li>
+              </ul>
+              
+              <div [ngbNavOutlet]="nav" class="mt-2"></div>
+          </div>
+       </div>
+    </section>
+ </div>
